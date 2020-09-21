@@ -21,6 +21,9 @@ set = function(object, keypath, value) {
     o = object;
     while (kp.length > 1) {
         k = kp.shift();
+        if (k.includes('__proto__') || k.includes('constructor') || k.includes('prototype')) {
+            return object;
+        }
         if (o[k] == null) {
             if (!Number.isNaN(parseInt(k))) {
                 o = o[k] = [];
