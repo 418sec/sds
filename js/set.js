@@ -20,10 +20,10 @@ set = function(object, keypath, value) {
     kp = [].concat(keypath);
     o = object;
     while (kp.length > 1) {
-        k = kp.shift();
-        if (k.includes('__proto__') || k.includes('constructor') || k.includes('prototype')) {
+        if (kp.includes('__proto__') || kp.includes('constructor') || kp.includes('prototype')) {
             return object;
         }
+        k = kp.shift();
         if (o[k] == null) {
             if (!Number.isNaN(parseInt(k))) {
                 o = o[k] = [];
